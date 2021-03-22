@@ -4,6 +4,7 @@ import groot.springboot.demo.bean.Demo;
 import groot.springboot.demo.service.DemoService;
 import groot.springboot.demo.service.DemoServicePlus;
 import groot.springboot.demo.service.TestService;
+import groot.springboot.demo.utils.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,9 @@ public class DemoController {
     @Autowired
     private TestService testService;
 
+    @Autowired
+    private FileUtils fileUtils;
+
     @GetMapping("/hello/{id}")
     public String hello(@PathVariable(value = "id") Integer id) {
         logger.info("hello---------------------->id:" + id);
@@ -55,9 +59,15 @@ public class DemoController {
         return this.bookname;
     }
 
-    @GetMapping("test")
+    @GetMapping("/test")
     public String test() {
         return testService.test();
+    }
+
+    @GetMapping(value = "/img", produces = "image/png")
+    public Object[] getImg(String id) {
+        String filePath = "";
+        return null;
     }
 
 }

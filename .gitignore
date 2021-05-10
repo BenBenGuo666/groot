@@ -1,4 +1,6 @@
 *.iml
 *.idea
-/groot-springboot/target/
-/groot-shiro/target/
+target
+*.settings
+*.classpath
+*.project

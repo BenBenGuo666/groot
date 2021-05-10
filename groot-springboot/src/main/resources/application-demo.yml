@@ -5,6 +5,8 @@ server:
 
 # mysql properties config
 spring:
+  application:
+    name: demo
   datasource:
     username: root
     password: 123456
@@ -12,13 +14,29 @@ spring:
 #    driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:p6spy:mysql://localhost:3306/test?useSSL=false
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+    mode: HTML
+    suffix: .html
+    prefix: classpath:/template/
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/static/**
+#    pathmatch:
+#      use-registered-suffix-pattern: true
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.mooc.bean
   configuration:
     map-underscore-to-camel-case: true
+
 
 ##SQL 语句打印
 ##3.2.1以上使用
@@ -43,6 +61,10 @@ mybatis:
 #outagedetection: true
 ## 慢SQL记录标准 2 秒
 #outagedetectioninterval: 2
+
+groot:
+  springboot:
+    static-url-prefix: http://127.0.0.1/${spring.application.name}/
 
 book:
   name: 《三体》

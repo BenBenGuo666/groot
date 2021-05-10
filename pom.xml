@@ -10,6 +10,7 @@
     <modules>
         <module>groot-springboot</module>
         <module>groot-shiro</module>
+        <module>groot-java</module>
     </modules>
     <packaging>pom</packaging>
 

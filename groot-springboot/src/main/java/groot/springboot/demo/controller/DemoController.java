@@ -1,5 +1,6 @@
 package groot.springboot.demo.controller;
 
+import groot.springboot.demo.bean.Book;
 import groot.springboot.demo.bean.Demo;
 import groot.springboot.demo.service.DemoService;
 import groot.springboot.demo.service.DemoServicePlus;
@@ -9,10 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
@@ -56,7 +55,15 @@ public class DemoController {
 
     @GetMapping("/getBookname")
     public String getBookname() {
-        return this.bookname;
+        return bookname;
+
+    }
+
+    @PostMapping("/getBookname_1")
+    public Book getBookname_1() {
+        Book book = new Book();
+        book.setName(bookname);
+        return book;
     }
 
     @GetMapping("/test")
@@ -64,10 +71,11 @@ public class DemoController {
         return testService.test();
     }
 
-    @GetMapping(value = "/img", produces = "image/png")
-    public Object[] getImg(String id) {
+
+
+    @GetMapping("/getImg")
+    public void getImg() {
         String filePath = "";
-        return null;
     }
 
 }

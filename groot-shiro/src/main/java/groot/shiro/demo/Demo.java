@@ -6,9 +6,13 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.springframework.core.io.FileSystemResource;
 
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Array;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channel;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -22,7 +26,7 @@ import java.util.function.BiPredicate;
  */
 public class Demo {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
        /* Realm realm = null;
         SecurityManager securityManager = new DefaultSecurityManager(realm);
         //Make the SecurityManager instance available to the entire application via static memory:
@@ -66,16 +70,31 @@ public class Demo {
         System.out.println("newBook==>newBook2:" + newBook2 + "," + newBook2.getName());*/
 //        Class<?> clazz = Demo.class;
 //        System.out.println(Configuration.class.getName());
-        Integer[] ints = {9, 2, 1, 4, 10, 7};
-        List<Integer> list = Arrays.asList(ints);
+       /* Integer[] ints = {9, 2, 1, 4, 10, 7};
+        List<Integer> list = Arrays.asList(ints);*/
 //        List<Integer> list = new ArrayList<>();
 //        list.addAll(Arrays.asList(ints));
-        list.sort((a, b) -> {
+       /* list.sort((a, b) -> {
             return Integer.compare((Integer) b, (Integer) a);
         });
         list.forEach(e -> System.out.println(e.intValue()));
-
-
+*/
+//        FileSystemResource fileSystemResource = new FileSystemResource("C:\\Users\\xw\\Desktop\\workspace\\workspace.txt");
+//        InputStream inputStream = fileSystemResource.getInputStream();
+        /*FileChannel fileChannel = (FileChannel) fileSystemResource.readableChannel();
+        ByteBuffer buff = ByteBuffer.allocate((int) fileSystemResource.contentLength());
+        fileChannel.read(buff);
+        buff.rewind();
+        String content = new String(buff.array());*/
+        /*while(fileChannel.read(buff) != -1){
+            buff.flip();
+            content = content + new String(buff.array());
+//            buff.clear();
+            buff.rewind();
+        }*/
+//        fileChannel.close();
+//        System.out.println(content);
+        System.out.println(Double.valueOf(".51"));
     }
 
     public static String getName(Book b) {

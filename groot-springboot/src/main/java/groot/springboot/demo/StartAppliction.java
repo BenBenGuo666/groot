@@ -16,7 +16,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 public class StartAppliction {
 
     public static void main(String[] args) {
-//        SpringApplication.run(StartAppliction.class, args);
+        SpringApplication.run(StartAppliction.class, args);
         System.out.println(Configuration.class.getName());
     }
 

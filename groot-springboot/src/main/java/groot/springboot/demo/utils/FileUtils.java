@@ -1,47 +1,81 @@
 package groot.springboot.demo.utils;
 
-import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.io.FileSystemResource;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 
 /**
  * @Desc
  * @Author GuoBen~
  * @Date 2021/3/22
  */
-@Component
 public class FileUtils {
 
-    void saveFile(File file) {
+    private final static Logger logger = LoggerFactory.getLogger(FileUtils.class);
 
-    }
-
-    public void writerFile(byte[] bytes, File file) throws IOException {
-        if (file.exists()) {
-
-        } else {
-            file.createNewFile();
-        }
-        FileOutputStream fileOutputStream = new FileOutputStream(file);
-        fileOutputStream.write(bytes);
-        fileOutputStream.close();
-    }
-
-    public byte[] readFile(File file) throws IOException {
-        if (file.exists()) {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            byte[] result = new byte[1024 * 1024 * 5];
-            ;
-            while (fileInputStream.read() != -1) {
-                fileInputStream.read(result, 0, result.length);
+    public byte[] readLocalFile(File file) {
+        FileSystemResource fileSystemResource = new FileSystemResource(file);
+        FileChannel fileReadableChannel = null;
+        try {
+            fileReadableChannel = (FileChannel) fileSystemResource.readableChannel();
+            ByteBuffer buff = ByteBuffer.allocate((int) fileSystemResource.contentLength());
+            fileReadableChannel.read(buff);
+            buff.rewind();
+            String content = new String(buff.array());
+            while (fileReadableChannel.read(buff) != -1) {
+                buff.flip();
+                content = content + new String(buff.array());
+                buff.rewind();
             }
-            fileInputStream.close();
-            return result;
-        } else {
-            return null;
+            return buff.array();
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.error("faild read file to local");
+        } finally {
+            if (fileReadableChannel != null) {
+                if (fileReadableChannel.isOpen()) {
+                    try {
+                        fileReadableChannel.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        logger.error("faild close fileChannel!");
+                    }
+                }
+            }
         }
+        return null;
+    }
 
-
+    public static void writeLocalFile(File file, byte[] bytes) {
+        FileSystemResource fileSystemResource = new FileSystemResource(file);
+        FileChannel fileWritableChannel = null;
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            fileWritableChannel = (FileChannel) fileSystemResource.writableChannel();
+            ByteBuffer buff = ByteBuffer.wrap(bytes);
+            fileWritableChannel.write(buff);
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.error("faild upload file to local");
+        } finally {
+            if (fileWritableChannel != null) {
+                if (fileWritableChannel.isOpen()) {
+                    try {
+                        fileWritableChannel.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        logger.error("faild close fileChannel!");
+                    }
+                }
+            }
+        }
     }
 
 }

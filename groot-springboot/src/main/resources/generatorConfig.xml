@@ -21,7 +21,7 @@
         </javaTypeResolver>
 
         <!-- targetProject:生成PO类的位置 -->
-        <javaModelGenerator targetPackage="com.iSpringboot.bean"
+        <javaModelGenerator targetPackage="groot.springboot.demo.bean"
                             targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
@@ -36,13 +36,13 @@
         </sqlMapGenerator>
         <!-- targetPackage：mapper接口生成的位置 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.iSpringboot.dao"
+                             targetPackage="groot.springboot.demo.dao"
                              targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!-- 指定数据库表 -->
         <table schema="" tableName="demo"></table>
-
+        <table schema="" tableName="upload_file"></table>
     </context>
 </generatorConfiguration>

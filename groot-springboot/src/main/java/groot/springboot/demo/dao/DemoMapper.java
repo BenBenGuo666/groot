@@ -3,9 +3,8 @@ package groot.springboot.demo.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import groot.springboot.demo.bean.Demo;
 import groot.springboot.demo.bean.DemoExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface DemoMapper extends BaseMapper<Demo> {
     long countByExample(DemoExample example);

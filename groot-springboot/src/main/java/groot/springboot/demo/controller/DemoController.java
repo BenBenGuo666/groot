@@ -5,14 +5,14 @@ import groot.springboot.demo.bean.Demo;
 import groot.springboot.demo.service.DemoService;
 import groot.springboot.demo.service.DemoServicePlus;
 import groot.springboot.demo.service.TestService;
-import groot.springboot.demo.utils.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.Optional;
 
 /**
@@ -37,9 +37,6 @@ public class DemoController {
 
     @Autowired
     private TestService testService;
-
-    @Autowired
-    private FileUtils fileUtils;
 
     @GetMapping("/hello/{id}")
     public String hello(@PathVariable(value = "id") Integer id) {
@@ -72,9 +69,15 @@ public class DemoController {
     }
 
 
+    @PostMapping("/uploadPic")
+    public void uploadPic(@RequestParam(value = "pic", required = false) MultipartFile pic) {
+        File file = new File("D:\\pic");
 
-    @GetMapping("/getImg")
-    public void getImg() {
+        String filePath = "";
+    }
+
+    @GetMapping("/getPic")
+    public void getPic() {
         String filePath = "";
     }
 

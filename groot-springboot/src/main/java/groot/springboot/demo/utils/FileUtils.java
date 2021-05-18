@@ -26,8 +26,8 @@ public class FileUtils {
             ByteBuffer buff = ByteBuffer.allocate((int) fileSystemResource.contentLength());
             fileReadableChannel.read(buff);
             buff.rewind();
-            String content = new String(buff.array());
-            System.out.println(content);
+/*            String content = new String(buff.array());
+            System.out.println(content);*/
             /*while (fileReadableChannel.read(buff) != -1) {
                 buff.flip();
                 content = content + new String(buff.array());

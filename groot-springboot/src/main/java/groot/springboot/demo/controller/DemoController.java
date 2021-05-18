@@ -1,10 +1,12 @@
 package groot.springboot.demo.controller;
 
+import groot.springboot.demo.LogicResult;
 import groot.springboot.demo.bean.Book;
 import groot.springboot.demo.bean.Demo;
 import groot.springboot.demo.service.DemoService;
 import groot.springboot.demo.service.DemoServicePlus;
 import groot.springboot.demo.service.TestService;
+import groot.springboot.demo.utils.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 
 /**
@@ -70,10 +73,12 @@ public class DemoController {
 
 
     @PostMapping("/uploadPic")
-    public void uploadPic(@RequestParam(value = "pic", required = false) MultipartFile pic) {
-        File file = new File("D:\\pic");
-
-        String filePath = "";
+    public LogicResult uploadPic(@RequestParam(value = "pic", required = false) MultipartFile pic) throws IOException {
+        File picFile = new File("D:\\pic\\" + pic.getOriginalFilename());
+//        EncrypRSA e;
+        byte[] picData = pic.getBytes();
+        FileUtils.writeLocalFile(picFile, picData);
+        return LogicResult.builder().build();
     }
 
     @GetMapping("/getPic")

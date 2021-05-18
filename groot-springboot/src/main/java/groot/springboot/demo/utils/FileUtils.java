@@ -18,7 +18,7 @@ public class FileUtils {
 
     private final static Logger logger = LoggerFactory.getLogger(FileUtils.class);
 
-    public byte[] readLocalFile(File file) {
+    public static byte[] readLocalFile(File file) {
         FileSystemResource fileSystemResource = new FileSystemResource(file);
         FileChannel fileReadableChannel = null;
         try {
@@ -27,11 +27,12 @@ public class FileUtils {
             fileReadableChannel.read(buff);
             buff.rewind();
             String content = new String(buff.array());
-            while (fileReadableChannel.read(buff) != -1) {
+            System.out.println(content);
+            /*while (fileReadableChannel.read(buff) != -1) {
                 buff.flip();
                 content = content + new String(buff.array());
                 buff.rewind();
-            }
+            }*/
             return buff.array();
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,6 +64,7 @@ public class FileUtils {
             fileWritableChannel.write(buff);
         } catch (IOException e) {
             e.printStackTrace();
+            logger.error(e.getMessage());
             logger.error("faild upload file to local");
         } finally {
             if (fileWritableChannel != null) {
@@ -71,6 +73,7 @@ public class FileUtils {
                         fileWritableChannel.close();
                     } catch (IOException e) {
                         e.printStackTrace();
+                        logger.error(e.getMessage());
                         logger.error("faild close fileChannel!");
                     }
                 }

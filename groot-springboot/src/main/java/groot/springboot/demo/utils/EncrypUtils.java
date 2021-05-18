@@ -41,7 +41,7 @@ public class EncrypUtils {
      * @throws BadPaddingException
      * @throws IllegalBlockSizeException
      */
-    private static byte[] cipher(Key key, byte[] bytes, String algorithm) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+    public static byte[] cipher(Key key, byte[] bytes, String algorithm) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         if (key == null) {
             return null;
         }

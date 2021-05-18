@@ -3,9 +3,10 @@ package groot.springboot.demo.utils;
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
-import java.security.*;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 
 public class AESUtil {
     private static String ALGORITHM = "AES";

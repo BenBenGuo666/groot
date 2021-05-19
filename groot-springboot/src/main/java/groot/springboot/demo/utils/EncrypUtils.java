@@ -105,6 +105,7 @@ public class EncrypUtils {
         //用私钥解密
         byte[] decryptBytes = cipher(privateKey, FileUtils.readLocalFile(new File("D:\\pic\\data")), ALGORITHM);
         System.out.println("公钥:" + publicKey.toString());
+
         System.out.println("私钥:" + privateKey.toString());
         System.out.println("明文是:" + msg);
         System.out.println("解密后是:" + new String(decryptBytes, StandardCharsets.UTF_8));

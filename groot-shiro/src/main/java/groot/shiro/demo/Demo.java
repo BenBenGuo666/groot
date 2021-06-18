@@ -13,10 +13,7 @@ import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channel;
 import java.nio.channels.FileChannel;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.BiPredicate;
 
 /**
@@ -34,7 +31,7 @@ public class Demo {
 
         /*String str = "123.jPg";
         str = str.toLowerCase();
-        System.out.println(str.substring(str.lastIndexOf(".", str.length())));*/
+        System.out.println(str.substring(0, str.lastIndexOf(".")));*/
 
 //        List<Object> list = new ArrayList<>();
         /*String responseString = HttpUtils.post("http://127.0.0.1:10086/demo/getBookname_1");
@@ -94,7 +91,48 @@ public class Demo {
         }*/
 //        fileChannel.close();
 //        System.out.println(content);
-        System.out.println(Double.valueOf(".51"));
+        /*System.out.println(Double.valueOf(".51"));*/
+
+
+        //ArrayList
+        //20210602 arrayList 特性
+        List A = new ArrayList();
+        for (int i = 0; i < 10; i++) {
+            A.add(i);
+        }
+        System.out.println(A);
+        //结论：排序是队列特性
+        List B = new ArrayList();
+        for (int i = 0; i < 4; i++) {
+            B.add(i - 3);
+        }
+        A.addAll(B);
+        System.out.println(A);
+        //结论: 队列特性，B 集合保持原有顺序，* 相同元素不会覆盖。
+        //20210602 arrayList api
+        Collections.reverse(A);
+        System.out.println(A);
+        //LinkedHashSet
+        List<Book> bookList = new ArrayList<>();
+        NewBook book = new NewBook();
+        book.setName("飞鸟集");
+        book.setPrices("20");
+        book.setPrice(0.1);
+        bookList.add(book);
+        NewBook book2 = new NewBook();
+        book2.setName("飞鸟集");
+        book2.setPrices("10");
+        book2.setPrice(0.2);
+        bookList.add(book2);
+        System.out.println(bookList);
+        Set set = new LinkedHashSet(bookList);
+        System.out.println(set);
+        System.out.println(book.equals(book2));
+        bookList.clear();
+        bookList.addAll(set);
+        System.out.println(bookList);
+        //结论：new LinkedHashSet 不是覆盖去重
+
     }
 
     public static String getName(Book b) {

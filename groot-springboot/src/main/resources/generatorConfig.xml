@@ -7,18 +7,18 @@
     <context id="testTables" targetRuntime="MyBatis3">
         <property name="javaFileEncoding" value="UTF-8"/>
         <!-- 带上序列化接口 -->
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
         <!-- 自定义的注释生成插件-->
         <plugin type="com.chrm.mybatis.generator.plugins.CommentPlugin">
             <!-- 抑制警告 -->
-            <property name="suppressTypeWarnings" value="true" />
+            <property name="suppressTypeWarnings" value="true"/>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="false" />
+            <property name="suppressAllComments" value="false"/>
             <!-- 是否生成注释代时间戳-->
-            <property name="suppressDate" value="true" />
+            <property name="suppressDate" value="true"/>
         </plugin>
         <!-- 整合lombok-->
-        <plugin type="com.chrm.mybatis.generator.plugins.LombokPlugin" >
+        <plugin type="com.chrm.mybatis.generator.plugins.LombokPlugin">
             <property name="hasLombok" value="true"/>
         </plugin>
 
@@ -28,8 +28,9 @@
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/workflow?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false" userId="root"
-                        password="123456">
+                        connectionURL="jdbc:mysql://192.168.20.126:3306/tz_platform?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"
+                        userId="tz_platform"
+                        password="tz_platform">
         </jdbcConnection>
         <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
             NUMERIC 类型解析为java.math.BigDecimal -->
@@ -60,20 +61,20 @@
         </javaClientGenerator>-->
         <!-- 作工具使用 -->
         <!-- PO -->
-        <javaModelGenerator targetPackage="com.xwtec.ecommerce.manage.model.workflow.base"
+        <javaModelGenerator targetPackage="com.xwtec.ecommerce.manage.model.check"
                             targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
             <!-- 从数据库返回的值被清理前后的空格 -->
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
-        <sqlMapGenerator targetPackage="com.xwtec.ecommerce.mapper.workflow.base"
+        <sqlMapGenerator targetPackage="com.xwtec.ecommerce.mapper.base.check"
                          targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.xwtec.ecommerce.manage.dao.workflow.base"
+                             targetPackage="com.xwtec.ecommerce.manage.dao.base.check"
                              targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
@@ -88,9 +89,15 @@
         </javaDomainGenerator>-->
 
         <!-- 指定数据库表 -->
-        <table schema="" tableName="node"></table>
-        <table schema="" tableName="work_order"></table>
-        <table schema="" tableName="workflow"></table>
-        <table schema="" tableName="workflow_instance"></table>
+<!--        <table schema="" tableName="check"></table>-->
+<!--        <table schema="" tableName="check_classify"></table>-->
+<!--        <table schema="" tableName="check_index"></table>-->
+<!--        <table schema="" tableName="check_index_param"></table>-->
+<!--        <table schema="" tableName="check_table"></table>-->
+<!--        <table schema="" tableName="check_upload_file"></table>-->
+<!--        <table schema="" tableName="check_table_param"></table>-->
+<!--        <table schema="" tableName="check_top_index"></table>-->
+        <table schema="" tableName="check_evaluation"></table>
+<!--        <table schema="" tableName="check_table"></table>-->
     </context>
 </generatorConfiguration>

@@ -96,7 +96,7 @@ public class Demo {
 
         //ArrayList
         //20210602 arrayList 特性
-        List A = new ArrayList();
+        /*List A = new ArrayList();
         for (int i = 0; i < 10; i++) {
             A.add(i);
         }
@@ -130,9 +130,21 @@ public class Demo {
         System.out.println(book.equals(book2));
         bookList.clear();
         bookList.addAll(set);
-        System.out.println(bookList);
+        System.out.println(bookList);*/
         //结论：new LinkedHashSet 不是覆盖去重
 
+//        System.out.println(new Date().getTime());
+       /* String number = "ssss";
+        int s = Integer.getInteger(number);
+        System.out.println(s);*/
+//        System.out.println(Demo.class.getSimpleName());
+//        ref(new Demo());
+        Boolean b = null;
+        System.out.println((false != b));
+    }
+
+    public static void ref(Object obj) {
+        System.out.println(obj.getClass().getSimpleName());
     }
 
     public static String getName(Book b) {

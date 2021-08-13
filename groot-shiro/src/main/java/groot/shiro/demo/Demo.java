@@ -1,20 +1,7 @@
 package groot.shiro.demo;
 
-import com.alibaba.fastjson.JSONObject;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
-import org.springframework.core.io.FileSystemResource;
-
-import java.io.*;
-import java.lang.reflect.Array;
-import java.nio.ByteBuffer;
-import java.nio.channels.Channel;
-import java.nio.channels.FileChannel;
-import java.util.*;
-import java.util.function.BiPredicate;
+import java.io.IOException;
+import java.math.BigInteger;
 
 /**
  * @Desc
@@ -139,8 +126,37 @@ public class Demo {
         System.out.println(s);*/
 //        System.out.println(Demo.class.getSimpleName());
 //        ref(new Demo());
-        Boolean b = null;
-        System.out.println((false != b));
+        /*Boolean b = null;
+        System.out.println((false != b));*/
+        /*BigDecimal bd = new BigDecimal(0.0D);
+        for (int i = 0; i < 5; i++) {
+            bd = bd.add(new BigDecimal(i + 1));
+        }
+        System.out.println(bd.doubleValue());*/
+        /*String a = "C:\\Users\\xw\\Desktop\\农业园Excel导入整理\\20210805\\考核表模板改动版.xls";
+        System.out.println(a.substring(a.lastIndexOf("\\") + 1, a.length()));*/
+        /*List<String> stringList = new ArrayList<>();
+        stringList.add("1");
+        stringList.add("2");
+        stringList.add("3");
+        stringList.add("4");
+        int i = 0;
+        System.out.println(stringList.get(i++));
+        System.out.println(stringList.get(i++));
+        System.out.println(stringList.get(i++));
+        System.out.println(stringList.get(i++));
+        System.out.println(i);*/
+        int i = 0;
+        /*for (; i < 5; i++) {
+            System.out.println((int)Math.pow(10, i));
+        }*/
+        System.out.println(121 % 10);
+        System.out.println(324 % 10);
+        System.out.println(1125 % 10);
+        System.out.println(0126 % 10);
+        System.out.println(0126);
+        BigInteger bigInteger = BigInteger.valueOf(1210);
+        System.out.println(bigInteger.mod(BigInteger.valueOf(100)).toString());
     }
 
     public static void ref(Object obj) {

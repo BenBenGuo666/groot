@@ -1,7 +1,7 @@
 package groot.shiro.demo;
 
 import java.io.IOException;
-import java.math.BigInteger;
+import java.util.Scanner;
 
 /**
  * @Desc
@@ -150,13 +150,41 @@ public class Demo {
         /*for (; i < 5; i++) {
             System.out.println((int)Math.pow(10, i));
         }*/
-        System.out.println(121 % 10);
+/*        System.out.println(121 % 10);
         System.out.println(324 % 10);
         System.out.println(1125 % 10);
         System.out.println(0126 % 10);
         System.out.println(0126);
         BigInteger bigInteger = BigInteger.valueOf(1210);
-        System.out.println(bigInteger.mod(BigInteger.valueOf(100)).toString());
+        System.out.println(bigInteger.mod(BigInteger.valueOf(100)).toString());*/
+        //旅游
+        /*Scanner scanner = new Scanner(System.in);
+        System.out.println("in:");
+        String str = scanner.nextLine();
+        String[] strs = str.split(" ");
+        int days = Integer.valueOf(strs[0]);
+        double oneDayFoodCost = Double.valueOf(strs[1]);
+        double oneWayFlightCost = Double.valueOf(strs[2]);
+        double oneNightHotelCost = Double.valueOf(strs[3]);
+        double total = days * oneDayFoodCost + 2 * oneWayFlightCost + (days - 1) * oneNightHotelCost;
+        System.out.println(total);*/
+        /*System.out.print("Please input duration in days:");
+        int days = scanner.nextInt();
+        System.out.print("Please input total food cost per day:");
+        double oneDayFoodCost = scanner.nextDouble();
+        System.out.print("Please input one-way flight cost:");
+        double oneWayFlightCost = scanner.nextDouble();
+        System.out.print("Please input cost of one night in a hotel:");
+        double oneNightHotelCost = scanner.nextDouble();
+        double total = days * oneDayFoodCost + 2 * oneWayFlightCost + (days - 1) * oneNightHotelCost;
+        System.out.println("total cost:" + total);*/
+        boolean b1 = true;
+        boolean b2 = false;
+        System.out.println(!b1 && b2);
+        System.out.println(b1 || !!b2);
+        System.out.println(!b1 && !b2);
+        System.out.println(!b1 || b2);
+        System.out.println(!(b1 || b2));
     }
 
     public static void ref(Object obj) {

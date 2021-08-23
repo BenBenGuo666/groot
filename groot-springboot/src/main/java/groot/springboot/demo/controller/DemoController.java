@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
@@ -40,6 +41,12 @@ public class DemoController {
 
     @Autowired
     private TestService testService;
+
+    @PostMapping("/book")
+    public Book book(@Valid @RequestBody Book book) {
+        logger.info("hello---------------------->id:" + book);
+        return book;
+    }
 
     @GetMapping("/hello/{id}")
     public String hello(@PathVariable(value = "id") Integer id) {

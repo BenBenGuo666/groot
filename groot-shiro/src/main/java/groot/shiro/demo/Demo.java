@@ -1,5 +1,8 @@
 package groot.shiro.demo;
 
+import com.alibaba.fastjson.JSONObject;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -146,7 +149,7 @@ public class Demo {
         System.out.println(stringList.get(i++));
         System.out.println(stringList.get(i++));
         System.out.println(i);*/
-        int i = 0;
+//        int i = 0;
         /*for (; i < 5; i++) {
             System.out.println((int)Math.pow(10, i));
         }*/
@@ -178,13 +181,35 @@ public class Demo {
         double oneNightHotelCost = scanner.nextDouble();
         double total = days * oneDayFoodCost + 2 * oneWayFlightCost + (days - 1) * oneNightHotelCost;
         System.out.println("total cost:" + total);*/
-        boolean b1 = true;
+        /*boolean b1 = true;
         boolean b2 = false;
         System.out.println(!b1 && b2);
         System.out.println(b1 || !!b2);
         System.out.println(!b1 && !b2);
         System.out.println(!b1 || b2);
-        System.out.println(!(b1 || b2));
+        System.out.println(!(b1 || b2));*/
+        /*String fileName = "8307条.xls";
+        String dirPath = "C:\\Users\\xw\\Desktop\\";
+        File file = new File(dirPath + fileName);
+        System.out.println(file.getPath());
+        System.out.println(file.length()/1024 + "KB");*/
+
+        StringBuffer sql = new StringBuffer();
+
+        /*List<String> checkList = vo.getSkuList().stream().map(sku -> {
+            Stream stream = sku.getImeiList().stream();
+            if (stream.count() != stream.distinct().count()) {
+                return sku.getSkuId() + "存在重复的串号";
+            }
+            return null;
+        }).collect(Collectors.toList());
+        if (checkList.stream().count() > 0) {
+            return R.failed(checkList.toString());
+        }*/
+
+        String ss = null;
+        System.out.println(ss.toString());
+
     }
 
     public static void ref(Object obj) {

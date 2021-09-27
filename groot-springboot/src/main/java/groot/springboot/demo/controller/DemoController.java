@@ -7,10 +7,12 @@ import groot.springboot.demo.service.DemoService;
 import groot.springboot.demo.service.DemoServicePlus;
 import groot.springboot.demo.service.TestService;
 import groot.springboot.demo.utils.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -42,9 +44,11 @@ public class DemoController {
     @Autowired
     private TestService testService;
 
+    //@Valid
     @PostMapping("/book")
-    public Book book(@Valid @RequestBody Book book) {
+    public Book book(@RequestBody Book book) {
         logger.info("hello---------------------->id:" + book);
+//        Assert.isTrue(StringUtils.isNotEmpty(book.getName()), "名称为空！");
         return book;
     }
 

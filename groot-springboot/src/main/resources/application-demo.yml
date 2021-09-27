@@ -2,6 +2,10 @@ server:
   port: 10086
   servlet:
     context-path: /
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
 #  ssl:
 #    key-store: classpath:example.jks
 #    key-store-password: 123456
@@ -14,8 +18,8 @@ spring:
   datasource:
     username: root
     password: 123456
-#    url: jdbc:mysql://localhost:3306/test?useSSL=false
-#    driver-class-name: com.mysql.jdbc.Driver
+    #    url: jdbc:mysql://localhost:3306/test?useSSL=false
+    #    driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:p6spy:mysql://localhost:3306/test?useSSL=false
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
   thymeleaf:
@@ -30,12 +34,9 @@ spring:
       content-type: text/html
   mvc:
     static-path-pattern: /static/**
-  resources:
-    static-locations: classpath:/resources/,classpath:/static/,classpath:/template
-  http:
-    encoding:
-      charset: UTF-8
-      enabled: true
+  web:
+    resources:
+      static-locations: classpath:/resources/,classpath:/static/,classpath:/template
 #    pathmatch:
 #      use-registered-suffix-pattern: true
 mybatis:
@@ -75,6 +76,10 @@ groot:
 
 book:
   name: 《三体》
+
+webClient:
+  provider:
+    maxConnections:
 
 logging:
   config: classpath:log4j2.yml

@@ -4,8 +4,7 @@ package com.example;
 import groot.springboot.demo.StartAppliction;
 import groot.springboot.demo.bean.Demo;
 import groot.springboot.demo.service.DemoService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -16,7 +15,7 @@ import java.util.List;
  * @author guoga
  * @version 14:33 2020/6/4
  */
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest(classes = StartAppliction.class)
 /*@ContextConfiguration(classes = {
         Demo.class,

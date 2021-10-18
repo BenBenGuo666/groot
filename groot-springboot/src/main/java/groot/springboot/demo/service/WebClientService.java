@@ -19,9 +19,6 @@ public class WebClientService {
     private WebClient webClient;
 
     public Mono<String> post(String url, Object object) {
-//        WebClient webClient = WebClient.create(url);
-//        WebClient webClient = WebClient.builder().baseUrl(url).build();
-//        System.out.println(webClient);
         return webClient.post().uri(url).contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(object)
                 .exchangeToMono(response -> {

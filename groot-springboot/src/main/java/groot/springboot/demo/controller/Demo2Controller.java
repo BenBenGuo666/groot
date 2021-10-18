@@ -15,6 +15,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author guoga
@@ -46,11 +47,14 @@ public class Demo2Controller {
         System.out.println(mono.block());
         System.out.println(JSONObject.toJSONString(mono));
         R result = JSONObject.parseObject(mono.block(), R.class);
-        /*if (mono.block() instanceof R) {
-            result = (R) mono.block();
-        } else {
-            result = R.failed();
-        }*/
+        System.out.println(result.getData());
+        if (result.getData() instanceof Map) {
+            Map<String, Map<String, String>> map = (Map<String, Map<String, String>>) result.getData();
+            System.out.println(map);
+            Map<String, String> content = map.get("CONTENT");
+            System.out.println(content);
+            System.out.println(content.get("ORDER_STATUS"));
+        }
         return result;
     }
 

@@ -1,0 +1,53 @@
+Configuration:
+  status: DEBUG
+  monitorInterval: 30
+
+  Properties: # 定义全局变量
+    Property: # 缺省配置（用于开发环境）。其他环境需要在VM参数中指定，如下：
+      - name: log.path
+        value: /root/deploy/micro_logs
+      - name: project.name
+        value: data_dash_board
+
+  Appenders:
+    RollingRandomAccessFile: # 输出到文件，超过128MB归档
+      - name: ROLLING_FILE
+        immediateFlush: true
+        bufferedIO: true
+        bufferSize: 512
+        fileName: ${log.path}/${project.name}.log
+        filePattern: "${log.path}/%d{yyyy-MM}/${project.name}-%d{yyyyMMdd}.log"
+        ThresholdFilter:
+          level: DEBUG
+          onMatch: ACCEPT
+          onMismatch: DENY
+        PatternLayout:
+          pattern: "%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{%5p} %clr{---}  %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m%n%xwEx"
+        Policies:
+          TimeBasedTriggeringPolicy:
+            modulate: true
+            interval: 1
+          SizeBasedTriggeringPolicy:
+            size: 100 MB
+
+  Loggers:
+    AsyncRoot:
+      level: DEBUG
+      AppenderRef:
+        - ref: ROLLING_FILE
+    AsyncLogger: # 为com.xwtech包配置特殊的Log级别，方便调试
+      - name: com.xwtech
+        additivity: false
+        level: DEBUG
+        AppenderRef:
+          - ref: ROLLING_FILE
+      - name: org.springframework
+        additivity: false
+        level: info
+        AppenderRef:
+          - ref: ROLLING_FILE
+      - name: org.apache.http
+        additivity: false
+        level: info
+        AppenderRef:
+          - ref: ROLLING_FILE

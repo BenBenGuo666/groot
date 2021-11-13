@@ -11,6 +11,8 @@
         <module>groot-springboot</module>
         <module>groot-shiro</module>
         <module>groot-java</module>
+        <module>groot-springflux</module>
+        <module>groot-springshell</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -41,11 +43,12 @@
                 <scope>import</scope>
             </dependency>
 
-            <dependency>
+            <!--<dependency>
                 <groupId>com.bes.appserver</groupId>
                 <artifactId>bes-lite-spring-boot-2.x-starter</artifactId>
                 <version>9.5.1</version>
-            </dependency>
+            </dependency>-->
+
         </dependencies>
     </dependencyManagement>
 

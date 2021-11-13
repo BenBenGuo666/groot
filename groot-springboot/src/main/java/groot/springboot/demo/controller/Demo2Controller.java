@@ -43,7 +43,6 @@ public class Demo2Controller {
         infoCheckVo.setOrder_type(3);
         infoCheckVo.setMerchant_code("供货商编码");
         Mono<String> mono = webClientService.post(url, infoCheckVo);
-
         System.out.println(mono.block());
         System.out.println(JSONObject.toJSONString(mono));
         R result = JSONObject.parseObject(mono.block(), R.class);

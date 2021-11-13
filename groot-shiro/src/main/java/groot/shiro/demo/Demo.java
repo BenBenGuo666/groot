@@ -4,7 +4,10 @@ import com.alibaba.fastjson.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * @Desc
@@ -194,7 +197,7 @@ public class Demo {
         System.out.println(file.getPath());
         System.out.println(file.length()/1024 + "KB");*/
 
-        StringBuffer sql = new StringBuffer();
+//        StringBuffer sql = new StringBuffer();
 
         /*List<String> checkList = vo.getSkuList().stream().map(sku -> {
             Stream stream = sku.getImeiList().stream();
@@ -207,8 +210,26 @@ public class Demo {
             return R.failed(checkList.toString());
         }*/
 
-        String ss = null;
-        System.out.println(ss.toString());
+/*        String ss = null;
+        System.out.println(ss.toString());*/
+        List<String> imeis = new ArrayList<>();
+        for(int i = 0; i < 10; i ++){
+            imeis.add("0000"+i);
+            System.out.println(imeis.get(i));
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        int subLength = 2;
+        int length = imeis.size() % subLength == 0 ? imeis.size() / subLength : imeis.size() / subLength + 1;
+        int count = 0;
+        List<String>[] imeiArray = new List[length];
+        for (int i = 0; i < imeis.size(); count++, i = subLength * count) {
+            imeiArray[count] = imeis.stream().skip(i).limit(subLength).collect(Collectors.toList());
+        }
+        for(int i = 0; i < imeiArray.length; i ++){
+            System.out.println(imeiArray[i]);
+        }
 
     }
 

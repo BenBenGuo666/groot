@@ -104,12 +104,13 @@
 <!--        <table schema="" tableName="check_top_index"></table>-->
 <!--        <table schema="" tableName="cochain_fertilizes"></table>-->
 <!--        <table schema="" tableName="cochain_goods"></table>-->
-        <table schema="" tableName="TB_GOODS_IMEI_LOG"
+        <table schema="" tableName="UTMS_PROV_GOODS_STOCK"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false" ></table>
+
 <!--        <table schema="" tableName="tb_goods_sn"></table>-->
         <!--<table schema="" tableName="cochain_sows"></table>
         <table schema="" tableName="cochain_file"></table>-->

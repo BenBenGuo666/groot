@@ -1,0 +1,25 @@
+server:
+  port: 10086
+  servlet:
+    context-path: /
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+#  ssl:
+#    key-store: classpath:example.jks
+#    key-store-password: 123456
+#    key-store-type: JKS
+
+# mysql properties config
+spring:
+  application:
+    name: demo
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/test?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+
+logging:
+  config: classpath:log4j2.yml

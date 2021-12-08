@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: gateway
+  cloud:
+    config:
+      enabled: false

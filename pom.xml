@@ -13,6 +13,7 @@
         <module>groot-java</module>
         <module>groot-springflux</module>
         <module>groot-springshell</module>
+        <module>groot-pri</module>
     </modules>
     <packaging>pom</packaging>
 

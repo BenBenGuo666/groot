@@ -4,9 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -139,7 +137,7 @@ public class Demo {
             bd = bd.add(new BigDecimal(i + 1));
         }
         System.out.println(bd.doubleValue());*/
-        /*String a = "C:\\Users\\xw\\Desktop\\农业园Excel导入整理\\20210805\\考核表模板改动版.xls";
+/*        String a = "C:\\Users\\xw\\Desktop\\农业园Excel导入整理\\20210805\\考核表模板改动版.xls";
         System.out.println(a.substring(a.lastIndexOf("\\") + 1, a.length()));*/
         /*List<String> stringList = new ArrayList<>();
         stringList.add("1");
@@ -212,7 +210,7 @@ public class Demo {
 
 /*        String ss = null;
         System.out.println(ss.toString());*/
-        List<String> imeis = new ArrayList<>();
+        /*List<String> imeis = new ArrayList<>();
         for(int i = 0; i < 10; i ++){
             imeis.add("0000"+i);
             System.out.println(imeis.get(i));
@@ -229,8 +227,59 @@ public class Demo {
         }
         for(int i = 0; i < imeiArray.length; i ++){
             System.out.println(imeiArray[i]);
-        }
+        }*/
+        //毫秒纳秒转换，尾巴多几个0
+/*        long startTimeNano = System.nanoTime();
+        long startTimeMillis = System.currentTimeMillis();
+        System.out.println("startTimeMillis:" + startTimeMillis);
+        System.out.println("startTimeNano / 1000 / 1000:" + startTimeNano/1000/1000);
+        System.out.println("startTimeNano:" + startTimeNano);
+        System.out.println(startTimeMillis*1000*1000);
+        System.out.println(startTimeNano/1000/1000 == startTimeMillis);*/
 
+        /*Scanner scanner = new Scanner(System.in);
+        // start coding here
+        int i = 0;
+        int index = 0;
+        String[] array = new String[200];
+        while(i < 4){
+            String names = scanner.nextLine();
+            String[] nArray = names.split(" ");
+            for(int j = 0; j < nArray.length; j ++){
+                array[index] = nArray[j];
+                index ++;
+            }
+            i ++;
+        }
+        for(int j = index - 1; j >= 0; j --){
+            System.out.println(array[j]);
+        }*/
+        /*Scanner scanner = new Scanner(System.in);
+        int number = scanner.nextInt();
+        String line = scanner.nextLine();
+        String[] strArray = line.split(" ");
+        int[] array = new int[number];
+        for(int i = 0; i < strArray.length; i ++){
+            array[i] = Integer.valueOf(strArray[i]);
+        }
+        for(int i = 0; i < array.length; i ++){
+            for(int j = 0; j < array.length; j ++){
+            }
+
+        }*/
+/*        List<Map> list = new ArrayList<>();
+        Map<String, Object> maps = new HashMap<>();
+*//*        maps.put("sourceType","JD");
+        maps.put("othdorder","");*//*
+        maps.put("skuId","4071570");
+        maps.put("price","0.1");
+        maps.put("num","1");
+        list.add(maps);
+        System.out.println(JSONObject.toJSONString(list));*/
+        String s = "\"123_8\"";
+        System.out.println(s);
+        System.out.println(s.replaceAll("\"",""));
+        System.out.println(s.substring(s.lastIndexOf("_") + 1));
     }
 
     public static void ref(Object obj) {

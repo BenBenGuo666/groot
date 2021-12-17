@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -276,11 +277,34 @@ public class Demo {
         maps.put("num","1");
         list.add(maps);
         System.out.println(JSONObject.toJSONString(list));*/
-        String s = "\"123_8\"";
+        /*String s = "\"123_8\"";
         System.out.println(s);
         System.out.println(s.replaceAll("\"",""));
-        System.out.println(s.substring(s.lastIndexOf("_") + 1));
+        System.out.println(s.substring(s.lastIndexOf("_") + 1));*/
+
+
+/*        StringBuffer sql = new StringBuffer();
+        sql.append("UPDATE TO_ORDERSALE_MAIN T SET T.F_ORDER_STATUSCODE = (CASE WHEN (SELECT SUM(F_GOODS_COUNT)-SUM(F_ACCEPT_COUNT) ");
+        sql.append("FROM TO_ORDERSALE_SUB T WHERE T.F_ORDER_NUMBER=?)> 0 THEN 'HZTDQS' ELSE 'HZTJS' END) ,T.F_CHECK_DATE = TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') WHERE T.F_ORDER_NUMBER = ?");
+        System.out.println(sql.toString());*/
+
+        /*StringBuffer sql = new StringBuffer();
+        sql.append("UPDATE TO_ORDERSALE_MAIN T SET T.F_ORDER_STATUSCODE = (CASE WHEN (SELECT SUM(F_DELIV_COUNT)-SUM(F_ACCEPT_COUNT + F_REFUSE_COUNT) ");
+        sql.append("FROM TO_ORDERSALE_SUB T WHERE T.F_ORDER_NUMBER=?)> 0 THEN 'HZTBFQS' ELSE 'HZTJS' END),T.F_CHECK_DATE = TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') WHERE T.F_ORDER_NUMBER = ?");
+        System.out.println(sql);*/
+
+/*        Object obj = null;
+        System.out.println("" + (obj));*/
+//        System.out.println(new String(obj + "").length());
+
+        String pattern = "^/payment/pay/goPayCallBack\\S+$";
+        System.out.println(
+                Pattern.matches(pattern,"/payment/pay/goPayCallBack?sessionId=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNzg4MzgwMyIsImNoYW5uZWwiOiJXRUIiLCJleHAiOjE2Mzk2MjMzMTJ9.Ge7xrG87wWdgU6za8XnnW8ms4X2w6HCnfjvnc8SozYjW_lS76QoLYhE3Xuq4AkcRtOd6UxCgcc11xGoATo9-5w&userId=123456")
+        );
+
     }
+
+
 
     public static void ref(Object obj) {
         System.out.println(obj.getClass().getSimpleName());

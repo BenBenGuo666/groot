@@ -7,13 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.client.reactive.ClientHttpConnector;
-import org.springframework.http.client.reactive.ReactorClientHttpConnector;
-import org.springframework.http.client.reactive.ReactorResourceFactory;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.netty.http.client.HttpClient;
-import reactor.netty.resources.ConnectionProvider;
-import reactor.netty.resources.LoopResources;
+
 
 import java.time.Duration;
 
@@ -30,7 +24,7 @@ public class WebClientConfiguration {
 
     private static final int MAX_CONNECTIONS_DEFAULT = 500;
 
-    @Bean
+    /*@Bean
     ReactorResourceFactory resourceFactory() {
         ReactorResourceFactory factory = new ReactorResourceFactory();
         factory.setUseGlobalResources(false);
@@ -60,6 +54,6 @@ public class WebClientConfiguration {
                             connection.addHandlerLast(new WriteTimeoutHandler(10));
                         }));
         return WebClient.builder().clientConnector(connector).build();
-    }
+    }*/
 
 }

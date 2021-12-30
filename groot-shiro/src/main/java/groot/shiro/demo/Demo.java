@@ -297,10 +297,53 @@ public class Demo {
         System.out.println("" + (obj));*/
 //        System.out.println(new String(obj + "").length());
 
-        String pattern = "^/payment/pay/goPayCallBack\\S+$";
+        /*String pattern = "^/payment/pay/goPayCallBack\\S+$";
         System.out.println(
                 Pattern.matches(pattern,"/payment/pay/goPayCallBack?sessionId=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNzg4MzgwMyIsImNoYW5uZWwiOiJXRUIiLCJleHAiOjE2Mzk2MjMzMTJ9.Ge7xrG87wWdgU6za8XnnW8ms4X2w6HCnfjvnc8SozYjW_lS76QoLYhE3Xuq4AkcRtOd6UxCgcc11xGoATo9-5w&userId=123456")
-        );
+        );*/
+
+   /*     String pattern = "^/common/sms\\S+$";
+        System.out.println(
+                Pattern.matches(pattern,"/common/sms/goPayCallBack?sessionId=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNzg4MzgwMyIsImNoYW5uZWwiOiJXRUIiLCJleHAiOjE2Mzk2MjMzMTJ9.Ge7xrG87wWdgU6za8XnnW8ms4X2w6HCnfjvnc8SozYjW_lS76QoLYhE3Xuq4AkcRtOd6UxCgcc11xGoATo9-5w&userId=123456")
+        );*/
+
+/*        String t = "aabccsdsdsd";
+        String p = "aab";
+        for(int i = 0; i < 10000; i ++){
+            t += "a";
+        }
+        System.out.println(t.indexOf(p));
+        System.out.println(t.hashCode());
+        System.out.println(p.hashCode());*/
+
+/*        StringBuffer sb = new StringBuffer();
+        sb.append(" SELECT T.F_ID,T.F_ORG_NUM AS ORGNUM,T.F_LINK_MANNAME AS USERNAME,");
+        sb.append("T.F_LINK_MOBILE AS PHONE,T.F_ADDRESS AS ADDRESS,T.F_REVIEW_STATUS,T.F_ADDR_FLAG,");
+        sb.append("T.PROV,T.CITY,T.COUNTY,T.TOWN,");
+        sb.append("provA.F_AREA_NAME \"PROVNAME\",cityA.F_AREA_NAME \"CITYNAME\",");
+        sb.append("countyA.F_AREA_NAME \"COUNTYPROVNAME\",townA.F_AREA_NAME \"TOWNNAME\" ");
+        sb.append("FROM XW_RECEIVER_INFO T ");
+        sb.append("LEFT JOIN TO_THD_AREA provA ON T.PROV = provA.F_AREA_NUM AND provA.F_SOURCE_TYPE = 'B2B' ");
+        sb.append("LEFT JOIN TO_THD_AREA cityA ON T.PROV = cityA.F_AREA_NUM AND cityA.F_SOURCE_TYPE = 'B2B' ");
+        sb.append("LEFT JOIN TO_THD_AREA countyA ON T.PROV = countyA.F_AREA_NUM AND countyA.F_SOURCE_TYPE = 'B2B' ");
+        sb.append("LEFT JOIN TO_THD_AREA townA ON T.PROV = townA.F_AREA_NUM AND townA.F_SOURCE_TYPE = 'B2B' ");
+        sb.append("WHERE 1 = 1 ");
+
+        System.out.println(sb);*/
+
+
+/*        System.out.println("加载当前类的加载器:" + Demo.class.getClassLoader());
+        System.out.println("加载应用程序类加载器的加载器"
+                + Demo.class.getClassLoader().getClass().getClassLoader());
+        System.out.println("String类的启动类加载器" + String.class.getClassLoader());*/
+/*        int[] arr = {10,7,2,4,7,62,3,4,2,1,8,9,19};
+        quickSort(arr, 0, arr.length-1);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }*/
+/*        String s = null;
+        System.out.println("null".equals(s));*/
+
 
     }
 

@@ -104,7 +104,7 @@
 <!--        <table schema="" tableName="check_top_index"></table>-->
 <!--        <table schema="" tableName="cochain_fertilizes"></table>-->
 <!--        <table schema="" tableName="cochain_goods"></table>-->
-        <table schema="" tableName="to_ordersale_main"
+        <table schema="" tableName="TO_THD_AREA"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

@@ -1,12 +1,9 @@
 package groot.shiro.demo;
 
-import com.alibaba.fastjson.JSONObject;
+import com.sun.imageio.plugins.common.ImageUtil;
+import net.coobird.thumbnailator.Thumbnails;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.*;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * @Desc
@@ -315,21 +312,23 @@ public class Demo {
         System.out.println(t.indexOf(p));
         System.out.println(t.hashCode());
         System.out.println(p.hashCode());*/
+/*
 
-/*        StringBuffer sb = new StringBuffer();
+        StringBuffer sb = new StringBuffer();
         sb.append(" SELECT T.F_ID,T.F_ORG_NUM AS ORGNUM,T.F_LINK_MANNAME AS USERNAME,");
         sb.append("T.F_LINK_MOBILE AS PHONE,T.F_ADDRESS AS ADDRESS,T.F_REVIEW_STATUS,T.F_ADDR_FLAG,");
         sb.append("T.PROV,T.CITY,T.COUNTY,T.TOWN,");
-        sb.append("provA.F_AREA_NAME \"PROVNAME\",cityA.F_AREA_NAME \"CITYNAME\",");
-        sb.append("countyA.F_AREA_NAME \"COUNTYPROVNAME\",townA.F_AREA_NAME \"TOWNNAME\" ");
+        sb.append("NVL(provA.F_AREA_NAME,'-') \"PROVNAME\",NVL(cityA.F_AREA_NAME,'-') \"CITYNAME\",");
+        sb.append("NVL(countyA.F_AREA_NAME,'-') \"COUNTYNAME\",NVL(townA.F_AREA_NAME,'-') \"TOWNNAME\" ");
         sb.append("FROM XW_RECEIVER_INFO T ");
         sb.append("LEFT JOIN TO_THD_AREA provA ON T.PROV = provA.F_AREA_NUM AND provA.F_SOURCE_TYPE = 'B2B' ");
-        sb.append("LEFT JOIN TO_THD_AREA cityA ON T.PROV = cityA.F_AREA_NUM AND cityA.F_SOURCE_TYPE = 'B2B' ");
-        sb.append("LEFT JOIN TO_THD_AREA countyA ON T.PROV = countyA.F_AREA_NUM AND countyA.F_SOURCE_TYPE = 'B2B' ");
-        sb.append("LEFT JOIN TO_THD_AREA townA ON T.PROV = townA.F_AREA_NUM AND townA.F_SOURCE_TYPE = 'B2B' ");
+        sb.append("LEFT JOIN TO_THD_AREA cityA ON T.CITY = cityA.F_AREA_NUM AND cityA.F_SOURCE_TYPE = 'B2B' ");
+        sb.append("LEFT JOIN TO_THD_AREA countyA ON T.COUNTY = countyA.F_AREA_NUM AND countyA.F_SOURCE_TYPE = 'B2B' ");
+        sb.append("LEFT JOIN TO_THD_AREA townA ON T.TOWN = townA.F_AREA_NUM AND townA.F_SOURCE_TYPE = 'B2B' ");
         sb.append("WHERE 1 = 1 ");
 
-        System.out.println(sb);*/
+        System.out.println(sb);
+*/
 
 
 /*        System.out.println("加载当前类的加载器:" + Demo.class.getClassLoader());
@@ -343,11 +342,24 @@ public class Demo {
         }*/
 /*        String s = null;
         System.out.println("null".equals(s));*/
+        //一寸照片制作
+        /*String imageName = "java_coffee.jpg";
+        String srcPath = "C:\\Users\\xw\\Desktop\\上线\\guobenben3.jpg";
 
-
+        imageName = "java_coffee_resize.jpg";
+        String destPath = "C:\\Users\\xw\\Desktop\\上线\\guobenben4.jpg";
+        boolean forceSize = true;
+        resizeImage(srcPath, destPath, 295, 413, forceSize);*/
     }
 
-
+    /*public static boolean resizeImage (String srcPath, String destPath, int newWith, int newHeight, boolean forceSize) throws IOException {
+        if (forceSize) {
+            Thumbnails.of(srcPath).forceSize(newWith, newHeight).toFile(destPath);
+        } else {
+            Thumbnails.of(srcPath).width(newWith).height(newHeight).toFile(destPath);
+        }
+        return true;
+    }*/
 
     public static void ref(Object obj) {
         System.out.println(obj.getClass().getSimpleName());

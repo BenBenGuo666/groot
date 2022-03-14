@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="groot.workflow.code.dao.base.WorkOrderMapper" >
+  <resultMap id="BaseResultMap" type="groot.workflow.code.model.base.WorkOrder" >
+    
+    <!-- 工单唯一标识 -->
+    <id column="wo_code" property="woCode" jdbcType="VARCHAR" />
+    
+    <!-- 流程节点唯一标识 -->
+    <result column="node_code" property="nodeCode" jdbcType="VARCHAR" />
+    
+    <!-- -1.失效的 0.待开始 1.审核中 2.已审核 3.已回退 4.已挂起 5.已阻塞 6.等待中 -->
+    <result column="wo_status" property="woStatus" jdbcType="INTEGER" />
+    
+    <!-- 审核人 -->
+    <result column="wo_reviewers" property="woReviewers" jdbcType="VARCHAR" />
+    
+    <!-- 工单现状 -->
+    <result column="wo_situation" property="woSituation" jdbcType="VARCHAR" />
+    
+    <!-- 工单创建时间 -->
+    <result column="wo_createtime" property="woCreatetime" jdbcType="TIMESTAMP" />
+    
+    <!-- 工单更新时间 -->
+    <result column="wo_updatetime" property="woUpdatetime" jdbcType="TIMESTAMP" />
+    
+    <!-- 0.删除的 1.正常的 -->
+    <result column="wo_flag" property="woFlag" jdbcType="INTEGER" />
+    
+    <!-- 工单备注 -->
+    <result column="wo_remark" property="woRemark" jdbcType="VARCHAR" />
+    
+    <!-- 流程实例唯一标识 -->
+    <result column="wf_instance_code" property="wfInstanceCode" jdbcType="VARCHAR" />
+    
+    <!-- 业务表单编码 -->
+    <result column="business_code" property="businessCode" jdbcType="VARCHAR" />
+    
+    <!-- 表单申请人，发起人 -->
+    <result column="wo_applicant" property="woApplicant" jdbcType="VARCHAR" />
+  </resultMap>
+  
+</mapper>

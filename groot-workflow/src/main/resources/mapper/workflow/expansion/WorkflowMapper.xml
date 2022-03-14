@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="groot.workflow.code.dao.expansion.WorkflowMapperEx">
+
+    <resultMap id="BaseResultMap" type="groot.workflow.code.model.base.Workflow">
+
+        <!-- 流程唯一标识 -->
+        <id column="wf_code" property="wfCode" jdbcType="VARCHAR"/>
+
+        <!-- 流程名称 -->
+        <result column="wf_name" property="wfName" jdbcType="VARCHAR"/>
+
+        <!-- 流程创建时间 -->
+        <result column="wf_createtime" property="wfCreatetime" jdbcType="TIMESTAMP"/>
+
+        <!-- 创建者 -->
+        <result column="wf_creator" property="wfCreator" jdbcType="VARCHAR"/>
+
+        <!-- 流程更新时间 -->
+        <result column="wf_modifytime" property="wfModifytime" jdbcType="TIMESTAMP"/>
+
+        <!-- 修改人 -->
+        <result column="wf_modifier" property="wfModifier" jdbcType="VARCHAR"/>
+
+        <!-- 备注 -->
+        <result column="wf_remark" property="wfRemark" jdbcType="VARCHAR"/>
+
+        <!-- 流程权限，逗号分割，用来发起流程：U开头对人，G开头对组织，R开头对角色 -->
+        <result column="wf_permission" property="wfPermission" jdbcType="VARCHAR"/>
+
+        <!-- 0.删除的 1.正常的 -->
+        <result column="wf_flag" property="wfFlag" jdbcType="INTEGER"/>
+
+        <!-- -1.失效的 0.待发布 1.已发布 -->
+        <result column="wf_status" property="wfStatus" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        wf_code
+        , wf_name, wf_createtime, wf_creator, wf_modifytime, wf_modifier, wf_remark,
+    wf_permission, wf_flag, wf_status
+    </sql>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from workflow
+        where
+        1 = 1
+        <if test="wf_code != null and wf_code != ''">
+            and wf_code = #{wf_code,jdbcType=VARCHAR}
+        </if>
+        <if test="wf_name != null and wf_name != ''">
+            and wf_name = #{wf_name,jdbcType=VARCHAR}
+        </if>
+        <if test="wf_creator != null and wf_creator != ''">
+            and wf_creator = #{wf_creator,jdbcType=VARCHAR}
+        </if>
+        <if test="wf_modifier != null and wf_modifier != ''">
+            and wf_modifier = #{wf_modifier,jdbcType=VARCHAR}
+        </if>
+        <if test="wf_permission != null and wf_permission != ''">
+            and wf_permission = #{wf_permission,jdbcType=VARCHAR}
+        </if>
+        <if test="wf_flag != null">
+            and wf_flag = #{wf_flag,jdbcType=INTEGER}
+        </if>
+        <if test="wf_status != null">
+            and wf_status = #{wf_status,jdbcType=INTEGER}
+        </if>
+        <choose>
+            <when test="orderByClause != null and orderByClause != ''">
+                order by ${orderByClause}
+            </when>
+            <otherwise>
+            </otherwise>
+        </choose>
+    </select>
+
+
+
+</mapper>

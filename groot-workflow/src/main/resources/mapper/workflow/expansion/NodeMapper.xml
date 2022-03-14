@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="groot.workflow.code.dao.expansion.NodeMapperEx">
+
+    <insert id="upsert">
+        insert into node
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="nodeCode != null" >
+                node_code,
+            </if>
+            <if test="nodeName != null" >
+                node_name,
+            </if>
+            <if test="nodeType != null" >
+                node_type,
+            </if>
+            <if test="nodePrev != null" >
+                node_prev,
+            </if>
+            <if test="nodeNext != null" >
+                node_next,
+            </if>
+            <if test="nodeBacked != null" >
+                node_backed,
+            </if>
+            <if test="nodeParent != null" >
+                node_parent,
+            </if>
+            <if test="nodeExpression != null" >
+                node_expression,
+            </if>
+            <if test="workflowCodeAndNodeCode != null" >
+                workflow_code_and_node_code,
+            </if>
+            <if test="nodeCreatetime != null" >
+                node_createtime,
+            </if>
+            <if test="nodeCreator != null" >
+                node_creator,
+            </if>
+            <if test="nodeModifytime != null" >
+                node_modifytime,
+            </if>
+            <if test="nodeModifier != null" >
+                node_modifier,
+            </if>
+            <if test="nodePermission != null" >
+                node_permission,
+            </if>
+            <if test="nodeStatus != null" >
+                node_status,
+            </if>
+            <if test="nodeRemarke != null" >
+                node_remarke,
+            </if>
+            <if test="nodeUrl != null" >
+                node_url,
+            </if>
+            <if test="nodeFlag != null" >
+                node_flag,
+            </if>
+            <if test="serialNumber != null" >
+                serial_number,
+            </if>
+            <if test="nodeClassify != null" >
+                node_classify,
+            </if>
+            <if test="nodeAutoCheck != null" >
+                node_auto_check,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="nodeCode != null" >
+                #{nodeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeName != null" >
+                #{nodeName,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeType != null" >
+                #{nodeType,jdbcType=INTEGER},
+            </if>
+            <if test="nodePrev != null" >
+                #{nodePrev,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeNext != null" >
+                #{nodeNext,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeBacked != null" >
+                #{nodeBacked,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeParent != null" >
+                #{nodeParent,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeExpression != null" >
+                #{nodeExpression,jdbcType=VARCHAR},
+            </if>
+            <if test="workflowCodeAndNodeCode != null" >
+                #{workflowCodeAndNodeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeCreatetime != null" >
+                #{nodeCreatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="nodeCreator != null" >
+                #{nodeCreator,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeModifytime != null" >
+                #{nodeModifytime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="nodeModifier != null" >
+                #{nodeModifier,jdbcType=VARCHAR},
+            </if>
+            <if test="nodePermission != null" >
+                #{nodePermission,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeStatus != null" >
+                #{nodeStatus,jdbcType=INTEGER},
+            </if>
+            <if test="nodeRemarke != null" >
+                #{nodeRemarke,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeUrl != null" >
+                #{nodeUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeFlag != null" >
+                #{nodeFlag,jdbcType=INTEGER},
+            </if>
+            <if test="serialNumber != null" >
+                #{serialNumber,jdbcType=INTEGER},
+            </if>
+            <if test="nodeClassify != null" >
+                #{nodeClassify,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeAutoCheck != null" >
+                #{nodeAutoCheck,jdbcType=INTEGER},
+            </if>
+        </trim>
+        ON DUPLICATE KEY UPDATE
+        <trim prefix="" suffix="" suffixOverrides=",">
+            <if test="nodeName != null" >
+                node_name = #{nodeName,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeType != null" >
+                node_type = #{nodeType,jdbcType=INTEGER},
+            </if>
+            <if test="nodePrev != null" >
+                node_prev = #{nodePrev,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeNext != null" >
+                node_next = #{nodeNext,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeBacked != null" >
+                node_backed = #{nodeBacked,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeParent != null" >
+                node_parent = #{nodeParent,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeExpression != null" >
+                node_expression = #{nodeExpression,jdbcType=VARCHAR},
+            </if>
+            <if test="workflowCodeAndNodeCode != null" >
+                workflow_code_and_node_code = #{workflowCodeAndNodeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeCreatetime != null" >
+                node_createtime = #{nodeCreatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="nodeCreator != null" >
+                node_creator = #{nodeCreator,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeModifytime != null" >
+                node_modifytime = #{nodeModifytime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="nodeModifier != null" >
+                node_modifier = #{nodeModifier,jdbcType=VARCHAR},
+            </if>
+            <if test="nodePermission != null" >
+                node_permission = #{nodePermission,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeStatus != null" >
+                node_status = #{nodeStatus,jdbcType=INTEGER},
+            </if>
+            <if test="nodeRemarke != null" >
+                node_remarke = #{nodeRemarke,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeUrl != null" >
+                node_url = #{nodeUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeFlag != null" >
+                node_flag = #{nodeFlag,jdbcType=INTEGER},
+            </if>
+            <if test="serialNumber != null" >
+                serial_number = #{serialNumber,jdbcType=INTEGER},
+            </if>
+            <if test="nodeClassify != null" >
+                node_classify = #{nodeClassify,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeAutoCheck != null" >
+                node_auto_check = #{nodeAutoCheck,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

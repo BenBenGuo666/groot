@@ -14,6 +14,8 @@
         <module>groot-springflux</module>
         <module>groot-springshell</module>
         <module>groot-pri</module>
+        <module>groor-spring-security</module>
+        <module>groot-workflow</module>
     </modules>
     <packaging>pom</packaging>
 

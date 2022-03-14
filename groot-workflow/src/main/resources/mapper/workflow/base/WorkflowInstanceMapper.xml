@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="groot.workflow.code.dao.base.WorkflowInstanceMapper" >
+  <resultMap id="BaseResultMap" type="groot.workflow.code.model.base.WorkflowInstance" >
+    
+    <!-- 流程实例唯一标识 -->
+    <id column="wf_instance_code" property="wfInstanceCode" jdbcType="VARCHAR" />
+    
+    <!-- 流程实例创建时间 -->
+    <result column="wf_instance_createtime" property="wfInstanceCreatetime" jdbcType="TIMESTAMP" />
+    
+    <!-- 流程实例更新时间 -->
+    <result column="wf_instance_updatetime" property="wfInstanceUpdatetime" jdbcType="TIMESTAMP" />
+    
+    <!-- 流程实例发起人 -->
+    <result column="wf_instance_creator" property="wfInstanceCreator" jdbcType="VARCHAR" />
+    
+    <!-- 流程实例状态:-1.失效的 0.进行中 1.已结束 2.挂起 3.中断 4.流程失败 -->
+    <result column="wf_instance_status" property="wfInstanceStatus" jdbcType="INTEGER" />
+    
+    <!-- 流程实例备注 -->
+    <result column="wf_instance_remark" property="wfInstanceRemark" jdbcType="VARCHAR" />
+    
+    <!-- 流程实例现状 -->
+    <result column="wf_instance_situation" property="wfInstanceSituation" jdbcType="VARCHAR" />
+    
+    <!-- 流程实例上下文 -->
+    <result column="wf_instance_context" property="wfInstanceContext" jdbcType="VARCHAR" />
+    
+    <!-- 0.删除的 1.正常的 -->
+    <result column="wf_instance_flag" property="wfInstanceFlag" jdbcType="INTEGER" />
+    
+    <!-- 流程唯一标识 -->
+    <result column="wf_code" property="wfCode" jdbcType="VARCHAR" />
+  </resultMap>
+  
+</mapper>

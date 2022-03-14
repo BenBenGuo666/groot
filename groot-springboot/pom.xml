@@ -187,11 +187,11 @@
                         <artifactId>orai18n</artifactId>
                         <version>19.3.0.0</version>
                     </dependency>
-                    <dependency>
+                    <!--<dependency>
                         <groupId>com.chrm</groupId>
                         <artifactId>mybatis-generator-lombok-plugin</artifactId>
                         <version>1.0-SNAPSHOT</version>
-                    </dependency>
+                    </dependency>-->
                 </dependencies>
             </plugin>
             <plugin>

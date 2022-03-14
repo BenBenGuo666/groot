@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="groot.workflow.code.dao.base.NodeMapper" >
+  <resultMap id="BaseResultMap" type="groot.workflow.code.model.base.Node" >
+
+    <!-- 节点唯一标识 -->
+    <id column="node_code" property="nodeCode" jdbcType="VARCHAR" />
+
+    <!-- 节点名称 -->
+    <result column="node_name" property="nodeName" jdbcType="VARCHAR" />
+
+    <!-- 节点类型：0.默认节点 1.集合节点 2.子流程节点 -->
+    <result column="node_type" property="nodeType" jdbcType="INTEGER" />
+
+    <!-- 上一个节点 -->
+    <result column="node_prev" property="nodePrev" jdbcType="VARCHAR" />
+
+    <!-- 下一个节点 -->
+    <result column="node_next" property="nodeNext" jdbcType="VARCHAR" />
+
+    <!-- 回退节点 -->
+    <result column="node_backed" property="nodeBacked" jdbcType="VARCHAR" />
+
+    <!-- 父节点 -->
+    <result column="node_parent" property="nodeParent" jdbcType="VARCHAR" />
+
+    <!-- 进入节点表达式 -->
+    <result column="node_expression" property="nodeExpression" jdbcType="VARCHAR" />
+
+    <!-- 流程唯一标识 -->
+    <result column="workflow_code_and_node_code" property="workflowCodeAndNodeCode" jdbcType="VARCHAR" />
+
+    <!-- 节点创建时间 -->
+    <result column="node_createtime" property="nodeCreatetime" jdbcType="TIMESTAMP" />
+
+    <!-- 节点创建人 -->
+    <result column="node_creator" property="nodeCreator" jdbcType="VARCHAR" />
+
+    <!-- 节点修改时间 -->
+    <result column="node_modifytime" property="nodeModifytime" jdbcType="TIMESTAMP" />
+
+    <!-- 节点修改人 -->
+    <result column="node_modifier" property="nodeModifier" jdbcType="VARCHAR" />
+
+    <!-- 节点权限，逗号分割：U开头对人，G开头对组织，R开头对角色 -->
+    <result column="node_permission" property="nodePermission" jdbcType="VARCHAR" />
+
+    <!-- -1.失效的 0.等待开始 1.开始中 2.已结束 3.已回退 4.挂起 5.阻塞  -->
+    <result column="node_status" property="nodeStatus" jdbcType="INTEGER" />
+
+    <!-- 节点备注 -->
+    <result column="node_remarke" property="nodeRemarke" jdbcType="VARCHAR" />
+
+    <!-- 节点对应功能页面 url -->
+    <result column="node_url" property="nodeUrl" jdbcType="VARCHAR" />
+
+    <!-- 0.删除的 1.正常的 -->
+    <result column="node_flag" property="nodeFlag" jdbcType="INTEGER" />
+
+    <!-- 序号 -->
+    <result column="serial_number" property="serialNumber" jdbcType="INTEGER" />
+
+    <!-- HEAD;TAIL; -->
+    <result column="node_classify" property="nodeClassify" jdbcType="VARCHAR" />
+
+    <!-- (是否生成工单）0.默认 1.不生成 -->
+    <result column="node_gen_wo_status" property="nodeGenWoStatus" jdbcType="INTEGER" />
+
+    <!-- 0.有上下级限制 1.无上下级限制 -->
+    <result column="node_limit_permission" property="nodeLimitPermission" jdbcType="INTEGER" />
+
+    <!-- (是否自动审核）0.否 1.是 -->
+    <result column="node_auto_check" property="nodeAutoCheck" jdbcType="INTEGER" />
+  </resultMap>
+
+</mapper>

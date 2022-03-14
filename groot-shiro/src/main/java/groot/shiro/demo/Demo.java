@@ -1,9 +1,7 @@
 package groot.shiro.demo;
 
-import com.sun.imageio.plugins.common.ImageUtil;
-import net.coobird.thumbnailator.Thumbnails;
-
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * @Desc
@@ -350,6 +348,13 @@ public class Demo {
         String destPath = "C:\\Users\\xw\\Desktop\\上线\\guobenben4.jpg";
         boolean forceSize = true;
         resizeImage(srcPath, destPath, 295, 413, forceSize);*/
+        int[] i = {0, 1};
+        Arrays.sort(i);
+
+    }
+
+    public int[] i (){
+        return new int[]{0, 1};
     }
 
     /*public static boolean resizeImage (String srcPath, String destPath, int newWith, int newHeight, boolean forceSize) throws IOException {

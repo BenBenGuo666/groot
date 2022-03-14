@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="groot.workflow.code.dao.expansion.WorkOrderMapperEx">
+
+    <resultMap id="BaseResultMap" type="groot.workflow.code.model.extension.WorkOrderDto">
+
+        <!-- 工单唯一标识 -->
+        <id column="wo_code" property="woCode" jdbcType="VARCHAR"/>
+
+        <!-- 流程节点唯一标识 -->
+        <result column="node_code" property="nodeCode" jdbcType="VARCHAR"/>
+
+        <!-- -1.失效的 0.待开始 1.审核中 2.已审核 3.已回退 4.已挂起 5.已阻塞 6.等待中 -->
+        <result column="wo_status" property="woStatus" jdbcType="INTEGER"/>
+
+        <!-- 审核人 -->
+        <result column="wo_reviewers" property="woReviewers" jdbcType="VARCHAR"/>
+
+        <!-- 工单现状 -->
+        <result column="wo_situation" property="woSituation" jdbcType="VARCHAR"/>
+
+        <!-- 工单创建时间 -->
+        <result column="wo_createtime" property="woCreatetime" jdbcType="TIMESTAMP"/>
+
+        <!-- 工单更新时间 -->
+        <result column="wo_updatetime" property="woUpdatetime" jdbcType="TIMESTAMP"/>
+
+        <!-- 0.删除的 1.正常的 -->
+        <result column="wo_flag" property="woFlag" jdbcType="INTEGER"/>
+
+        <!-- 工单备注 -->
+        <result column="wo_remark" property="woRemark" jdbcType="VARCHAR"/>
+
+        <!-- 流程实例唯一标识 -->
+        <result column="wf_instance_code" property="wfInstanceCode" jdbcType="VARCHAR"/>
+        <result column="wf_instance_code" property="workflowInstanceDto.wfInstanceCode" jdbcType="VARCHAR"/>
+
+        <!-- 业务表单编码 -->
+        <result column="business_code" property="businessCode" jdbcType="VARCHAR"/>
+
+        <result column="f_org_name" property="orgName" jdbcType="VARCHAR"/>
+
+        <!-- 表单申请人，发起人 -->
+        <result column="wo_applicant" property="woApplicant" jdbcType="VARCHAR"/>
+
+        <result column="wf_name" property="workflowDto.wfName" jdbcType="VARCHAR"/>
+
+        <result column="node_name" property="nodeDto.nodeName" jdbcType="VARCHAR"/>
+        <result column="node_url" property="nodeDto.nodeUrl" jdbcType="VARCHAR"/>
+        <result column="node_permission" property="nodeDto.nodePermission" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        wo_code
+        , node_code, wo_status, wo_reviewers, wo_situation, wo_createtime, wo_updatetime,
+    wo_flag, wo_remark, wf_instance_code, business_code, wo_applicant,node_url
+    </sql>
+
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.util.Map">
+        SELECT
+        a.wo_code
+        , a.node_code, a.wo_status, a.wo_reviewers, a.wo_situation, a.wo_createtime, a.wo_updatetime,
+        a.wo_flag, a.wo_remark, a.wf_instance_code, a.business_code, a.wo_applicant,
+        c.wf_code,c.wf_name,d.node_name,d.node_url,d.node_permission
+        FROM work_order a
+        INNER JOIN workflow_instance b ON a.wf_instance_code = b.wf_instance_code
+        INNER JOIN workflow c ON b.wf_code = c.wf_code
+        INNER JOIN tc_instance_org e ON e.F_INSTANCE_ID=a.business_code
+        <if test="wf_code != null and wf_code != ''">
+            AND c.wf_code = #{wf_code,jdbcType=VARCHAR}
+        </if>
+        INNER JOIN node d ON a.node_code = d.node_code
+        where 1 = 1
+        <if test="orgId!=null">
+            and FIND_IN_SET(e.F_ORG_ID ,get_child_list (#{orgId}))
+        </if>
+        <if test="roleList!=null">
+            <foreach item="item" collection="roleList" separator=" " index="">
+                and (d.node_permission=null or d.node_permission like CONCAT('%',#{item.roleId},'%'))
+            </foreach>
+        </if>
+        <if test="wo_code != null">
+            AND a.wo_code = #{wo_code,jdbcType=VARCHAR}
+        </if>
+        <if test="node_code != null">
+            AND a.node_code = #{node_code,jdbcType=VARCHAR}
+        </if>
+        <if test="wo_status != null">
+            AND a.wo_status = #{wo_status,jdbcType=INTEGER}
+        </if>
+        <if test="wo_reviewers != null">
+            AND a.wo_reviewers = #{wo_reviewers,jdbcType=VARCHAR}
+        </if>
+        <if test="wo_flag != null">
+            AND a.wo_flag = #{wo_flag,jdbcType=INTEGER}
+        </if>
+        <if test="wf_instance_code != null">
+            AND a.wf_instance_code = #{wf_instance_code,jdbcType=VARCHAR}
+        </if>
+        <if test="business_code != null">
+            AND a.business_code = #{business_code,jdbcType=VARCHAR}
+        </if>
+        <if test="wo_applicant != null">
+            AND a.wo_applicant = #{wo_applicant,jdbcType=VARCHAR}
+        </if>
+        <choose>
+            <when test="orderByClause != null and orderByClause != ''">
+                order by ${orderByClause}
+            </when>
+            <otherwise>
+                ORDER BY a.wo_createtime DESC, a.wo_updatetime ASC
+            </otherwise>
+        </choose>
+
+    </select>
+    <select id="queryAllDbsx" resultMap="BaseResultMap" parameterType="java.util.Map">
+        SELECT
+        m.f_org_name,
+        a.wo_code
+        , a.node_code, a.wo_status, a.wo_reviewers, a.wo_situation, a.wo_createtime, a.wo_updatetime,
+        a.wo_flag, a.wo_remark, a.wf_instance_code, a.business_code, a.wo_applicant,
+        c.wf_code,c.wf_name,d.node_name,d.node_url,d.node_permission
+        FROM work_order a
+        INNER JOIN workflow_instance b ON a.wf_instance_code = b.wf_instance_code
+        INNER JOIN workflow c ON b.wf_code = c.wf_code
+        INNER JOIN tc_instance_org e ON e.F_INSTANCE_ID=a.business_code
+        INNER JOIN tsys_org_info m on m.F_ORG_ID=e.F_ORG_ID
+        <if test="wf_code != null and wf_code != ''">
+            AND c.wf_code = #{wf_code,jdbcType=VARCHAR}
+        </if>
+        INNER JOIN node d ON a.node_code = d.node_code
+        INNER JOIN tc_table_instance h on h.F_INSTANCE_ID=a.business_code
+        INNER JOIN tc_table_template i on i.F_TABLE_ID=h.F_TABLE_ID
+        where 1 = 1
+        AND a.wo_status=1
+        <if test="orgId!=null">
+            and FIND_IN_SET(e.F_ORG_ID ,get_child_list (#{orgId}))
+        </if>
+        <if test="searchDepart!=null">
+            and FIND_IN_SET(e.F_ORG_ID ,get_child_list (#{searchDepart}))
+        </if>
+        <if test="roleList!=null">
+            <foreach item="item" collection="roleList" separator=" " index="">
+                and (d.node_permission=null or d.node_permission like CONCAT('%',#{item.roleId},'%'))
+            </foreach>
+        </if>
+        <if test="wo_code != null">
+            AND a.wo_code = #{wo_code,jdbcType=VARCHAR}
+        </if>
+        <if test="node_code != null">
+            AND a.node_code = #{node_code,jdbcType=VARCHAR}
+        </if>
+        <if test="wo_status != null">
+            AND a.wo_status = #{wo_status,jdbcType=INTEGER}
+        </if>
+        <if test="wo_reviewers != null">
+            AND a.wo_reviewers = #{wo_reviewers,jdbcType=VARCHAR}
+        </if>
+        <if test="wo_flag != null">
+            AND a.wo_flag = #{wo_flag,jdbcType=INTEGER}
+        </if>
+        <if test="wf_instance_code != null">
+            AND a.wf_instance_code = #{wf_instance_code,jdbcType=VARCHAR}
+        </if>
+        <if test="business_code != null">
+            AND a.business_code = #{business_code,jdbcType=VARCHAR}
+        </if>
+        <if test="wo_applicant != null">
+            AND a.wo_applicant = #{wo_applicant,jdbcType=VARCHAR}
+        </if>
+        <if test="tableKeyList!=null and tableKeyList.size>0">
+        and (
+        <foreach collection="tableKeyList" item="listItem" open=" ( " close=" ) " separator=" or ">
+            i.F_TABLE_KEY=#{listItem}
+        </foreach>
+        )
+        </if>
+        <choose>
+            <when test="orderByClause != null and orderByClause != ''">
+                order by ${orderByClause}
+            </when>
+            <otherwise>
+                ORDER BY a.wo_updatetime, a.wo_createtime DESC
+            </otherwise>
+        </choose>
+
+
+    </select>
+
+    <select id="selectSeq" resultType="java.lang.String">
+        SELECT CONCAT(DATE_FORMAT(NOW(), '%Y%m%d'), LPAD(nextCheckVal('WO_ID'), 4, 0))
+    </select>
+
+</mapper>

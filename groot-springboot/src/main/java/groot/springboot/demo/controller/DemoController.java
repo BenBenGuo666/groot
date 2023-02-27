@@ -26,7 +26,6 @@ import java.util.Optional;
  * @version 11:54 2020/5/12
  */
 @RestController// @RestponseBody 和 @Controller 的组合
-//@PropertySource(value = "classpath:test.properties", encoding = "utf-8")
 @RequestMapping("/demo")
 public class DemoController {
 

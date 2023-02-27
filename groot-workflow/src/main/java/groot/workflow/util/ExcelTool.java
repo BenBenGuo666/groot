@@ -28,6 +28,7 @@ public class ExcelTool {
     private int lastCellNum = 0;
     private int lastRowNum = 0;
     private Sheet sheet = null;
+    private Sheet hideSheet = null;
     private File file = null;
     private int inited = 0;
     private static final String XLS = "xls";
@@ -78,13 +79,36 @@ public class ExcelTool {
     }
 
     public static void main(String[] args) {
-        String sourceDirPath = "C:\\Users\\xw\\Desktop\\农业园Excel导入整理\\20210802园区考核表";
+        String[] textArray = {"1s", "2s", "3s"};
+        String sourceDirPath = "/Users/guobenben/";
+        String fileName = "test2.xlsx";
+        String filePath = sourceDirPath + fileName;
+        try {
+            File file = new File(filePath);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            ExcelTool excelTool = new ExcelTool();
+            excelTool.init(file);
+            excelTool.hideSheet = excelTool.workbook.createSheet();
+            excelTool.workbook
+                    .setSheetHidden(
+                            excelTool.workbook.getSheetIndex(excelTool.hideSheet), true);
+            for (int i = 0; i < textArray.length; i++) {
+                excelTool.gaigai(1, 0, i + 1, textArray[i]);
+            }
+            excelTool.write(file);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       /* String sourceDirPath = "C:\\Users\\xw\\Desktop\\农业园Excel导入整理\\20210802园区考核表";
         String targerDirPath = "C:\\Users\\xw\\Desktop\\农业园Excel导入整理\\20210802";
         String templatePath = "C:\\Users\\xw\\Desktop\\农业园Excel导入整理\\考核表模板改动版.xls";
-      /*  File sourceExcelFile = new File(sourceDirPath + "\\" + "2021-08-07泰州市现代农业产业示范园考核表（江苏古溪现代农业科技园）.xls");
+      *//*  File sourceExcelFile = new File(sourceDirPath + "\\" + "2021-08-07泰州市现代农业产业示范园考核表（江苏古溪现代农业科技园）.xls");
         File targetTemplateExcelFile = new File(templatePath);
         File targetExcelFile = new File(targerDirPath + "\\" + "2021-08-07泰州市现代农业产业示范园考核表（江苏古溪现代农业科技园）.xls");
-        xiugaiExcel(sourceExcelFile, targetTemplateExcelFile, targetExcelFile);*/
+        xiugaiExcel(sourceExcelFile, targetTemplateExcelFile, targetExcelFile);*//*
         File sourceDir = new File(sourceDirPath);
         final int threads = 5;
         ExecutorService executorService = Executors.newFixedThreadPool(threads);
@@ -113,7 +137,7 @@ public class ExcelTool {
             e.printStackTrace();
         }
         System.out.println("耗时:" + (System.currentTimeMillis() - startTime) + " ms,数量:" + sourceDir.list().length);
-
+*/
     }
 
     public int getLastCellNum() {
@@ -168,6 +192,9 @@ public class ExcelTool {
             } else {
                 this.workbook = new XSSFWorkbook(inputStream);
                 this.sheet = this.workbook.getSheetAt(0);
+                if (this.sheet == null) {
+                    this.workbook.createSheet();
+                }
             }
             this.lastRowNum = this.sheet.getLastRowNum();
             this.lastCellNum = this.sheet.getRow(this.sheet.getFirstRowNum()).getLastCellNum();
@@ -236,6 +263,26 @@ public class ExcelTool {
             }
             this.resetIndex(i, this.lastCellNum);
         }
+    }
+
+    /**
+     * 改改
+     */
+    public void gaigai(int sheetIndex, int rowNum, int cellNum, String value) {
+        Sheet sheet = workbook.getSheetAt(sheetIndex);
+        if (this.inited == 0 || sheet == null) {
+            sheet = workbook.createSheet();
+            this.inited = 1;
+        }
+        Row row = sheet.getRow(rowNum);
+        if (row == null) {
+            row = sheet.createRow(rowNum);
+        }
+        Cell cell = row.getCell(cellNum);
+        if (cell == null) {
+            cell = row.createCell(cellNum);
+        }
+        cell.setCellValue(value);
     }
 
     /**

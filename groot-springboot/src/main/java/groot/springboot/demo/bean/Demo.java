@@ -1,23 +1,18 @@
 package groot.springboot.demo.bean;
 
+import lombok.Data;
+
+import java.math.BigDecimal;
+
+@Data
 public class Demo {
     private Integer id;
 
     private String name;
 
-    public Integer getId() {
-        return id;
+    public static void main(String[] args) {
+        BigDecimal bigDecimal = new BigDecimal("0.22");
+        System.out.println(bigDecimal);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
 }

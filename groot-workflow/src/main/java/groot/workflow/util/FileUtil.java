@@ -69,6 +69,7 @@ public class FileUtil {
         System.out.println("耗时:" + (System.currentTimeMillis() - startTime) + " ms");
         System.out.println("共复制文件: " + num + "份");
         System.out.println("数据量: " + new DecimalFormat("######0.00").format(size) + " Mb");
+
     }
 
     public static File[] copy(String targetPath, File... souceFiles) {

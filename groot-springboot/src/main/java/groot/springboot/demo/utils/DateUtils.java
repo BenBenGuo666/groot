@@ -6,9 +6,13 @@ import lombok.extern.slf4j.Slf4j;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author zongyuqiang
@@ -333,4 +337,14 @@ public class DateUtils {
         return localDate.atStartOfDay();
 
     }
+
+    public static void main(String[] args) {
+        // 可以根据需要指定特定的时区
+        List<LocalDate> dateList = IntStream.range(0, 7)
+                .mapToObj(i -> LocalDate.now().minus(i, ChronoUnit.DAYS))
+                .collect(Collectors.toList());
+
+        dateList.forEach(System.out::println);
+    }
+
 }

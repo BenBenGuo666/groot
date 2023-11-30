@@ -1,6 +1,9 @@
 package groot.shiro.demo;
 
+import cn.hutool.core.util.HexUtil;
+
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 /**
@@ -348,8 +351,19 @@ public class Demo {
         String destPath = "C:\\Users\\xw\\Desktop\\上线\\guobenben4.jpg";
         boolean forceSize = true;
         resizeImage(srcPath, destPath, 295, 413, forceSize);*/
-        int[] i = {0, 1};
-        Arrays.sort(i);
+       /* int[] i = {0, 1};
+        Arrays.sort(i);*/
+
+        String str = "我是一个字符串";
+
+        String hex = HexUtil.encodeHexStr(str, StandardCharsets.UTF_8);
+        System.out.println(hex);
+//hex是：
+//e68891e698afe4b880e4b8aae5ad97e7aca6e4b8b2
+
+        String decodedStr = HexUtil.decodeHexStr("0000A001");
+        System.out.println(decodedStr);
+//解码后与str相同
 
     }
 

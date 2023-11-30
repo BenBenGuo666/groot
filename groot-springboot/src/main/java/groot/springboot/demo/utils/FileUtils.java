@@ -1,5 +1,7 @@
 package groot.springboot.demo.utils;
 
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Observable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.FileSystemResource;
@@ -24,12 +26,16 @@ public class FileUtils {
         try {
             fileReadableChannel = (FileChannel) fileSystemResource.readableChannel();
             ByteBuffer buff = ByteBuffer.allocate((int) fileSystemResource.contentLength());
+            int s = (int) (fileSystemResource.contentLength() * 0.1);
+            int l = (int) (fileSystemResource.contentLength() - s);
             fileReadableChannel.read(buff);
             buff.rewind();
-            return buff.array();
+            byte[] bytes = new byte[l];
+            System.arraycopy(buff.array(), s, bytes, 0, l);
+            return bytes;
         } catch (IOException e) {
             e.printStackTrace();
-            logger.error("faild read file to local");
+            logger.error("failed read file to local");
         } finally {
             if (fileReadableChannel != null) {
                 if (fileReadableChannel.isOpen()) {
@@ -37,7 +43,7 @@ public class FileUtils {
                         fileReadableChannel.close();
                     } catch (IOException e) {
                         e.printStackTrace();
-                        logger.error("faild close fileChannel!");
+                        logger.error("failed close fileChannel!");
                     }
                 }
             }
@@ -54,11 +60,12 @@ public class FileUtils {
             }
             fileWritableChannel = (FileChannel) fileSystemResource.writableChannel();
             ByteBuffer buff = ByteBuffer.wrap(bytes);
-            fileWritableChannel.write(buff);
+            System.out.println(bytes.length);
+            System.out.println("fileWritableChannel->write:" + fileWritableChannel.write(buff));
         } catch (IOException e) {
             e.printStackTrace();
             logger.error(e.getMessage());
-            logger.error("faild upload file to local");
+            logger.error("failed upload file to local");
         } finally {
             if (fileWritableChannel != null) {
                 if (fileWritableChannel.isOpen()) {
@@ -67,11 +74,34 @@ public class FileUtils {
                     } catch (IOException e) {
                         e.printStackTrace();
                         logger.error(e.getMessage());
-                        logger.error("faild close fileChannel!");
+                        logger.error("failed close fileChannel!");
                     }
                 }
             }
         }
+    }
+
+    public static void main(String[] args) {
+
+        Flowable<Integer> flow = Flowable.range(1, 5)
+                .map(v -> v * v)
+                .filter(v -> v % 2 == 0);
+        flow.subscribe(System.out::println).dispose();
+
+        Observable.create(emitter -> {
+                    while (!emitter.isDisposed()) {
+                        long time = System.currentTimeMillis();
+                        emitter.onNext(time);
+                        if (time % 2 != 0) {
+                            emitter.onError(new IllegalStateException("Odd millisecond!"));
+                            break;
+                        }
+                    }
+                })
+                .subscribe(System.out::println, Throwable::printStackTrace)
+                .dispose();
+
+        Flowable.just("Hello world").subscribe(System.out::println).dispose();
     }
 
 }

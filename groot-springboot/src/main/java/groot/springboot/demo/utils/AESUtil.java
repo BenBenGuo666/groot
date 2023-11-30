@@ -68,7 +68,7 @@ public class AESUtil {
     }
 
     public static void main(final String[] args) {
-        String content = "username=mmaccount&packageid=20001&phoneno=111&busicode=codevalue";
+       /* String content = "username=mmaccount&packageid=20001&phoneno=111&busicode=codevalue";
         String password = "cplatform_hyl";
         byte[] en_bytes = encrypt(FileUtils.readLocalFile(new File("D:\\pic\\微信图片_20210309214004.png")), password);
         FileUtils.writeLocalFile(new File("D:\\pic\\asc_data_pic"), en_bytes);
@@ -76,6 +76,12 @@ public class AESUtil {
         FileUtils.writeLocalFile(new File("D:\\pic\\asc_decrypt_pic.jpg"), de_bytes);
         System.out.println(new String(en_bytes));
         System.out.println(new String(de_bytes));
-        System.out.println(content.equals(new String(de_bytes)));
+        System.out.println(content.equals(new String(de_bytes)));*/
+        String fileName = "demo-香薰机.json";
+        String filePath = "/Users/guobenben/project/AIot";
+        File file = new File(filePath + File.separator + fileName);
+        File fileDump = new File(filePath + File.separator + "demo.json");
+        System.out.println("file size:" + file.length());
+        FileUtils.writeLocalFile(fileDump, FileUtils.readLocalFile(file));
     }
 }
